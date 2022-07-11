@@ -14,7 +14,7 @@ class PostImagesController < ApplicationController
   end
 
   def index
-    @post_images = PostImage.all
+    @post_images = PostImage.page(params[:page]).reverse_order
   end
 
   def show
@@ -25,7 +25,7 @@ class PostImagesController < ApplicationController
   def destroy
     @post_iamge = PostImage.find(params[:id])
     @post_iamge.destroy
-    redirect_to '/post_images'
+    redirect_to post_images_path
   end
   
   #投稿データのストロングパラメータ
